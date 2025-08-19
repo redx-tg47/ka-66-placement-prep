@@ -11,11 +11,15 @@ public class BasicPrep {
     factorialNumberRecursive(5); // O(n) and O(n) due to recursion stack space
     factorialNumberStream(5); // O(n) and O(1) for the stream operation
 
+    // Factors of a Number
+    printFactors(12); // O(n) and O(1)
+    printFactorsStreams(12); // O(n) and O(1) for the stream operation
+
     // Star Patterns
     printStarPatterns(5);  // O(n^2) and O(1)
     printStarPatterns1(5); // O(n^2) and O(1)
     printStarPatterns2(5); // O(n^2) and O(1)
-    printStarPatterns3(5); // O(n^2) and O(1)
+    printStarPatterns3(2); // O(n^2) and O(1)
     printStarPatterns4(5); // O(n^2) and O(1)
     printStarPatterns5(5); // O(n^2) and O(1)
     printStarPatterns6(5); // O(n^2) and O(1)
@@ -67,7 +71,7 @@ public class BasicPrep {
 
   // using recursion
   public static void factorialNumberRecursive(int n) {
-    System.out.println("factorial for number " + n);
+    System.out.println("Using recursion factorial for number " + n);
     int result = factorialRecursive(n);
     System.out.println("factorial is " + result);
   }
@@ -81,18 +85,35 @@ public class BasicPrep {
 
   // using stream
   public static void factorialNumberStream(int n) {
-    System.out.println("factorial for number " + n);
+    System.out.println("Using Stream Operation factorial for number " + n);
     int result = IntStream.rangeClosed(1, n)
         .reduce(1, (a, b) -> a * b);
     System.out.println("factorial is " + result);
   }
 
+  // factors of Number
+  public static void printFactors(int n) {
+    System.out.print("Factors of " + n + ": ");
+    for (int i = 1; i <= n; i++) {
+      if (n % i == 0) {
+        System.out.print(i + " ");
+      }
+    }
+    System.out.println();
+  }
+
+  public static void printFactorsStreams(int n) {
+    System.out.print("Using stream operations factors of " + n + ": ");
+    IntStream.rangeClosed(1, n)
+        .filter(i -> n % i == 0)
+        .forEach(i -> System.out.print(i + " "));
+    System.out.println();
+  }
 
   // Star Patterns
   // This method prints a right-angled triangle pattern of stars
   public static void printStarPatterns(int n) {
-
-    System.out.println("Star Pattern");
+    System.out.println("***** Star Pattern *****");
     for (int i = 1; i <= n; i++) {
       for (int j = 1; j <= i; j++) {
         System.out.print("*");
@@ -246,4 +267,6 @@ public class BasicPrep {
       System.out.println();
     }
   }
+
+
 }
