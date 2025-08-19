@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class BasicPrep {
@@ -5,6 +6,8 @@ public class BasicPrep {
   public static void main(String[] args) {
     fibonacciSeries(10); // O(n) and O(1)
     reverseNumber(-123); // O(log10(n)) and O(1)
+
+    sumOfDigits(12345); // O(log10(n)) and O(1)
 
     // Factorial Numbers
     factorialNumber(5); // O(n) and O(1)
@@ -14,6 +17,10 @@ public class BasicPrep {
     // Factors of a Number
     printFactors(12); // O(n) and O(1)
     printFactorsStreams(12); // O(n) and O(1) for the stream operation
+
+    isNumberArmstrong(153); // O(log10(n)) and O(1)
+
+    areStringAnagram("listen", "silent"); // O(n log n) and O(n) for sorting and space
 
     // Star Patterns
     printStarPatterns(5);  // O(n^2) and O(1)
@@ -58,6 +65,18 @@ public class BasicPrep {
 
     reverse *= isNegative; // Restore the sign if it was negative
     System.out.println("reversed number " + reverse);
+  }
+
+
+  public static void sumOfDigits(int n) {
+    int sum = 0;
+
+    while(n > 0) {
+      int r = n % 10;
+      sum += r;
+      n /= 10;
+    }
+    System.out.println(sum);
   }
 
   public static void factorialNumber(int n) {
@@ -109,6 +128,38 @@ public class BasicPrep {
         .forEach(i -> System.out.print(i + " "));
     System.out.println();
   }
+
+  public static void isNumberArmstrong(int n) {
+    int original = n;
+    int sum = 0;
+
+    while(n > 0) {
+      int d = n % 10;
+      sum += d * d * d;
+      n /= 10;
+    }
+
+    if(sum == original){
+      System.out.println("Given Number is Amstrong");
+    } else {
+      System.out.println("Given Number is not Amstrong");
+    }
+  }
+
+  public static void areStringAnagram(String s1, String s2) {
+    char [] a = s1.toCharArray();
+    char [] b = s2.toCharArray();
+
+    Arrays.sort(a);
+    Arrays.sort(b);
+
+    if (Arrays.equals(a,b)){
+      System.out.println("Given Strings are Anagram");
+    } else {
+      System.out.println("Given Strings are not Anagram");
+    }
+  }
+
 
   // Star Patterns
   // This method prints a right-angled triangle pattern of stars
