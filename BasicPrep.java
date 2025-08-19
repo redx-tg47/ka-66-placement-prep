@@ -1,7 +1,8 @@
 public class BasicPrep {
 
   public static void main(String[] args) {
-    fibonacciSeries(10);
+    fibonacciSeries(10); // O(n) and O(1)
+    reverseNumber(-123); // O(log10(n)) and O(1)
   }
 
   // What is fibonacciSeries?
@@ -20,6 +21,22 @@ public class BasicPrep {
     }
 
     System.out.println();
+  }
+
+  public static void reverseNumber(int n) {
+    System.out.println("original number " + n);
+    int reverse = 0;
+    int isNegative = n < 0 ? -1 : 1; // Check if the number is negative
+    n = Math.abs(n); // Make n positive for reversal
+
+    while(n > 0) {
+      int digit = n % 10;
+      reverse = reverse * 10 + digit;
+      n /=10;
+    }
+
+    reverse *= isNegative; // Restore the sign if it was negative
+    System.out.println("reversed number " + reverse);
   }
 
 }
